@@ -1,0 +1,193 @@
+{%- liquid
+  assign p = closest.product
+  if p == blank
+    assign p = product
+  endif
+  assign show = false
+  if p != blank and p.type == 'Cribbing Block'
+    assign show = true
+  endif
+  if collection.handle == 'cribbing-blocks' or collection.handle == 'cribbing-kits'
+    assign show = true
+  endif
+-%}
+{%- if show -%}
+<div class="bk-cx" id="bk-cx-{{ block.id }}" {{ block.shopify_attributes }}>
+  <h3 class="bk-cx__title">{{ block.settings.heading | escape }}</h3>
+  <p class="bk-cx__lede">The same 50,000 lb load on soft ground, held by a jack stand and by a Brakko crib kit. Ground pressure is the load divided by the area touching the ground.</p>
+<section class="stage" aria-label="Animated cribbing explainer">
+    <svg id="svg-{{ block.id }}" viewBox="0 0 1200 640" role="img" aria-labelledby="svgDesc-{{ block.id }}">
+      <desc id="svgDesc-{{ block.id }}">Side view of heavy equipment held up two ways. A jack stand's small feet concentrate pressure, punch into the soil and the stand leans. A three-layer crib of 6 by 7 by 24 inch blocks on a 24 by 24 inch Anchor base plate spreads the load wide and stays level. A chart compares ground pressure.</desc>
+      <defs>
+        <marker id="ah-{{ block.id }}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="f-hot"/></marker>
+        <clipPath id="soilClip-{{ block.id }}"><path id="soilClipPath-{{ block.id }}" d=""/></clipPath>
+        <pattern id="pyr-{{ block.id }}" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" class="f-block"/><rect x="1.6" y="1.6" width="5.8" height="5.8" class="f-block-hi"/></pattern>
+      </defs>
+
+      <g id="sceneAB-{{ block.id }}">
+        <path id="soil-{{ block.id }}" class="f-soil" d=""/>
+        <g clip-path="url(#soilClip-{{ block.id }})">
+          <g id="strata-{{ block.id }}"></g>
+          <g id="grains-{{ block.id }}"></g>
+          <g id="bulb-{{ block.id }}"></g>
+          <g id="pArrows-{{ block.id }}"></g>
+        </g>
+        <g id="crib-{{ block.id }}" opacity="0"></g>
+        <g id="stand-{{ block.id }}"></g>
+        <g id="rail-{{ block.id }}">
+          <rect class="f-rail" x="390" y="0" width="420" height="40" rx="3"/>
+          <text x="400" y="-8" class="t-muted" font-size="20">Equipment frame</text>
+        </g>
+        <g id="loadArrow-{{ block.id }}">
+          <line x1="600" y1="0" x2="600" y2="0" class="s-hot" stroke-width="10" marker-end="url(#ah-{{ block.id }})"/>
+          <text x="625" y="0" class="t-display t-hot" font-size="30">50,000 lb</text>
+        </g>
+        <g id="callA-{{ block.id }}">
+          <line x1="0" y1="0" x2="0" y2="0" class="s-ink" stroke-width="2"/>
+          <circle cx="0" cy="0" r="5" class="f-ink"/>
+          <text x="60" y="300" class="t-display" font-size="30">16 sq in contact</text>
+          <text x="60" y="330" class="t-muted" font-size="22">four 2 × 2 in stand feet</text>
+        </g>
+        <g id="callB-{{ block.id }}" opacity="0">
+          <line x1="0" y1="0" x2="0" y2="0" class="s-ink" stroke-width="2"/>
+          <circle cx="0" cy="0" r="5" class="f-ink"/>
+          <text x="60" y="300" class="t-display" font-size="30">576 sq in contact</text>
+          <text x="60" y="330" class="t-muted" font-size="22">24 × 24 in Anchor base plate</text>
+        </g>
+        <g id="callLock-{{ block.id }}" opacity="0">
+          <line x1="0" y1="0" x2="0" y2="0" class="s-ink" stroke-width="2"/>
+          <circle cx="0" cy="0" r="5" class="f-ink"/>
+          <text x="60" y="160" class="t-display" font-size="26">Locking top plate</text>
+          <text x="60" y="188" class="t-muted" font-size="20">grooves seat the block ribs</text>
+        </g>
+        <text id="sceneLabel-{{ block.id }}" x="40" y="62" class="t-display" font-size="34"></text>
+        <g id="readout-{{ block.id }}">
+          <text x="1160" y="140" text-anchor="end" class="t-muted" font-size="20" letter-spacing="2">GROUND PRESSURE</text>
+          <text id="psi-{{ block.id }}" x="1160" y="212" text-anchor="end" class="t-display" font-size="78">0 psi</text>
+          <text id="formula-{{ block.id }}" x="1160" y="246" text-anchor="end" class="t-mono" font-size="22"></text>
+          <text id="warn-{{ block.id }}" x="1160" y="300" text-anchor="end" class="t-display t-hot" font-size="30" opacity="0">Feet punch in, stand leans</text>
+          <text id="ok-{{ block.id }}" x="1160" y="300" text-anchor="end" class="t-display" font-size="30" opacity="0">36× less pressure</text>
+          <text id="ok2-{{ block.id }}" x="1160" y="336" text-anchor="end" class="t-muted" font-size="22" opacity="0">Low, wide and about 320 lb</text>
+        </g>
+      </g>
+
+      <g id="sceneC-{{ block.id }}" opacity="0">
+        <text x="40" y="62" class="t-display" font-size="34">Ground pressure, 50,000 lb load</text>
+        <text x="40" y="94" class="t-muted" font-size="20">Log scale. Dashed lines: building-code presumptive bearing values for soil.</text>
+        <g id="chart-{{ block.id }}"></g>
+      </g>
+    </svg>
+    <div class="bar">
+      <div class="controls">
+        <button id="playBtn-{{ block.id }}" type="button" aria-label="Pause">Pause</button>
+        <button id="replayBtn-{{ block.id }}" type="button">Replay</button>
+      </div>
+      <div class="scenes" role="group" aria-label="Jump to scene">
+        <button type="button" data-scene="0" aria-pressed="true">Jack stand</button>
+        <button type="button" data-scene="1" aria-pressed="false">Crib kit</button>
+        <button type="button" data-scene="2" aria-pressed="false">Compare</button>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="prog-{{ block.id }}"></span></div>
+    </div>
+  </section>
+
+  <p class="caption" id="caption-{{ block.id }}" aria-live="polite"></p>
+
+  <h4 class="bk-cx__sub">The numbers</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Support</th><th class="num">Ground contact</th><th class="num">Ground pressure</th><th class="num">Base width</th><th class="num">Own weight</th></tr></thead>
+      <tbody>
+        <tr><td>Jack stand (example)</td><td class="num">16 sq in</td><td class="num">3,125.0 psi</td><td class="num">10 in</td><td class="num">≈15 lb</td></tr>
+        <tr><td>3-layer crib on bare soil</td><td class="num">504 sq in</td><td class="num">99.2 psi</td><td class="num">24 in</td><td class="num">239 lb</td></tr>
+        <tr><td>Crib kit on 24 × 24 Anchor base plate</td><td class="num">576 sq in</td><td class="num">86.8 psi</td><td class="num">24 in</td><td class="num">322 lb</td></tr>
+        <tr class="grp"><th colspan="5" scope="rowgroup">What the ground can carry (building code values)</th></tr>
+        <tr class="ref"><td>Sandy gravel and gravel</td><td class="num">3,000 psf</td><td class="num">20.8 psi</td><td class="num"></td><td class="num">Soil can carry</td></tr>
+        <tr class="ref"><td>Sand, silty sand</td><td class="num">2,000 psf</td><td class="num">13.9 psi</td><td class="num"></td><td class="num">Soil can carry</td></tr>
+        <tr class="ref"><td>Clay, silt</td><td class="num">1,500 psf</td><td class="num">10.4 psi</td><td class="num"></td><td class="num">Soil can carry</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="notes">
+    <li>Example load of 50,000 lb on one support point. Pressure = load ÷ contact area, assuming the load is centered and the plate is rigid.</li>
+    <li>The jack stand is an example with four 2 × 2 in feet on a 10 in base. Stands vary, so measure your own.</li>
+    <li>The crib is three crossing layers of three Bedrock 6 × 7 × 24 in blocks (26.5 lb each) with Anchor 24 × 24 in plates (41.6 lb each) top and bottom. A layer of three blocks touches 3 × 7 × 24 = 504 sq in.</li>
+    <li>Soil values are presumptive load-bearing values from IBC Table 1806.2. They are conservative numbers for permanent foundations, shown for comparison only.</li>
+    <li>This is an illustration, not an engineering calculation. Build cribs on firm, level, prepared ground, never exceed the rated capacity of any component, and follow the crib manual.</li>
+  </ul>
+</div>
+
+<script>
+    $('callA').setAttribute('opacity', mode === 0 ? 1 : 0);
+    $('callB').setAttribute('opacity', mode === 1 ? cribA.toFixed(2) : 0);
+    $('callLock').setAttribute('opacity', mode === 1 ? clamp((u - 4600) / 700).toFixed(2) : 0);
+    setLine($('callA'), CX - SPREAD - 16, G - 3, 330, 340);
+    setLine($('callB'), x0 - 6, G - 14, 330, 340);
+    setLine($('callLock'), x0 + 30, cribTop + 14, 330, 196);
+
+    // bulbs
+    contours.forEach(function (c) {
+      if (mode === 0) {
+        var rx = FOOT / 2 * (0.9 + 0.55 * c.k) * (0.4 + 0.6 * p), ry = FOOT * 0.55 * c.k * p + 0.01;
+        var op = (p * (0.22 + 0.12 * (6 - c.k))).toFixed(3);
+        c.a.setAttribute('d', halfEllipse(CX - SPREAD, G + s * 34, rx, ry)); c.a.setAttribute('opacity', op);
+        c.b.setAttribute('d', halfEllipse(CX + SPREAD, G + s * 14, rx, ry)); c.b.setAttribute('opacity', op);
+      } else {
+        var rx2 = W24 / 2 * (0.75 + 0.3 * c.k) * (0.4 + 0.6 * p), ry2 = W24 * 0.12 * c.k * p + 0.01;
+        c.a.setAttribute('d', halfEllipse(CX, G, rx2, ry2)); c.a.setAttribute('opacity', (p * 0.22 * (0.22 + 0.12 * (6 - c.k))).toFixed(3));
+        c.b.setAttribute('d', '');
+      }
+    });
+    arrowNodes.forEach(function (n, i) {
+      var x, len, y0;
+      if (mode === 0) {
+        if (i > 3 || p <= 0) { n.setAttribute('opacity', 0); return; }
+        var foot = i < 2 ? CX - SPREAD : CX + SPREAD;
+        x = foot + (i % 2 ? 6 : -6); y0 = G + (i < 2 ? s * 34 : s * 14) + 6; len = 78;
+      } else {
+        if (p <= 0) { n.setAttribute('opacity', 0); return; }
+        x = x0 + 10 + (W24 - 20) * i / 10; y0 = G + 6; len = 14;
+      }
+      n.setAttribute('x1', x); n.setAttribute('x2', x); n.setAttribute('y1', y0); n.setAttribute('y2', y0 + len * p);
+      n.setAttribute('opacity', p.toFixed(2));
+    });
+
+    $('sceneLabel').textContent = mode === 0 ? 'Jack stand' : 'Brakko crib kit';
+    var psiVal = mode === 0 ? STAND_PSI : CRIB_PSI;
+    $('psi').textContent = Math.round(psiVal * p).toLocaleString('en-US') + ' psi';
+    $('formula').textContent = mode === 0 ? '50,000 lb ÷ 16 sq in' : '50,000 lb ÷ 576 sq in';
+    $('warn').setAttribute('opacity', mode === 0 ? clamp((s - 0.5) * 3).toFixed(2) : 0);
+    var okA = mode === 1 ? clamp((u - 4200) / 700) : 0;
+    $('ok').setAttribute('opacity', okA.toFixed(2));
+    $('ok2').setAttribute('opacity', okA.toFixed(2));
+  }
+
+  // ---- chart, log scale 5..1000 psi
+  var chart = $('chart');
+  var X0 = 420, XW = 700, LMIN = Math.log(5), LMAX = Math.log(5000);
+  function xs(v) { return X0 + XW * (Math.log(v) - LMIN) / (LMAX - LMIN); }
+  function fitBg(bg, t) { try { var b = t.getBBox(); bg.setAttribute('x', b.x - 4); bg.setAttribute('y', b.y - 2); bg.setAttribute('width', b.width + 8); bg.setAttribute('height', b.height + 4); } catch (e) {} }
+  [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000].forEach(function (t) {
+    el('line', { x1: xs(t), x2: xs(t), y1: 200, y2: 540, 'class': 's-line', 'stroke-width': 1 }, chart);
+    var tx = el('text', { x: xs(t), y: 572, 'text-anchor': 'middle', 'class': 't-mono', 'font-size': 18 }, chart); tx.textContent = t;
+  });
+  var ax = el('text', { x: X0 + XW, y: 602, 'text-anchor': 'end', 'class': 't-muted', 'font-size': 18 }, chart); ax.textContent = 'psi';
+  var refs = [[10.4, 'Clay 10.4', 270], [13.9, 'Sand 13.9', 236], [20.8, 'Gravel 20.8', 202]];
+  refs.forEach(function (r) { el('line', { x1: xs(r[0]), x2: xs(r[0]), y1: r[2] - 22, y2: 540, 'class': 's-muted', 'stroke-width': 2, 'stroke-dasharray': '6 6' }, chart); });
+  refs.forEach(function (r) {
+    var bg = el('rect', { 'class': 'f-panel' }, chart);
+    var t = el('text', { x: xs(r[0]) + 8, y: r[2] - 4, 'class': 't-muted', 'font-size': 19 }, chart); t.textContent = r[1];
+    fitBg(bg, t);
+  });
+  var rows = [
+    { label: 'Jack stand', sub: '16 sq in of feet', v: STAND_PSI, hot: true },</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "cq 2",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why a crib beats a jack stand on soft ground" }
+  ],
+  "presets": [{ "name": "cq 2" }]
+}
+{% endschema %}
