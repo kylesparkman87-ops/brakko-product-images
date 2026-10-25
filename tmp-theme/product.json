@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": { "media_presentation": "grid", "media_columns": "two", "image_gap": 4, "aspect_ratio": "adapt", "constrain_to_viewport": true, "media_fit": "contain", "zoom": true, "hide_variants": true },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": { "width": "fill", "width_mobile": "fill", "height": "fit", "details_position": "flex-start", "gap": 24, "sticky_details_desktop": true, "padding-block-start": 24, "padding-block-end": 24 },
+          "blocks": {
+            "header_group": {
+              "type": "group",
+              "name": "t:names.header",
+              "settings": { "content_direction": "column", "vertical_on_mobile": true, "horizontal_alignment_flex_direction_column": "flex-start", "vertical_alignment_flex_direction_column": "center", "gap": 12, "width": "fill", "width_mobile": "fill", "height": "fit" },
+              "blocks": {
+                "vendor_text": { "type": "text", "name": "Brand", "settings": { "text": "<p>{{ closest.product.vendor }}</p>", "width": "100%", "alignment": "left", "type_preset": "h6" }, "blocks": {} },
+                "title_text": { "type": "text", "name": "t:names.product_title", "settings": { "text": "<h1>{{ closest.product.title }}</h1>", "width": "100%", "alignment": "left", "type_preset": "h3" }, "blocks": {} },
+                "price_block": { "type": "price", "settings": { "show_sale_price_first": true, "type_preset": "h4", "width": "100%", "alignment": "left", "padding-block-start": 4 }, "blocks": {} }
+              },
+              "block_order": ["vendor_text", "title_text", "price_block"]
+            },
+            "divider_main": { "type": "_divider", "name": "t:names.divider", "settings": { "thickness": 1, "divider_color": "{{ settings.color_palette.color2 }}", "width_percent": 100 }, "blocks": {} },
+            "variant_picker": { "type": "variant-picker", "settings": { "variant_style": "buttons", "show_swatches": false, "alignment": "left" }, "blocks": {} },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "settings": { "stacking": true, "show_pickup_availability": false, "gift_card_form": true, "border_width": 1, "border_radius": 0 },
+              "blocks": {
+                "quantity": { "type": "quantity", "static": true, "settings": { "border_width": 1, "border_radius": 0 }, "blocks": {} },
+                "add-to-cart": { "type": "add-to-cart", "static": true, "settings": { "style_class": "button" }, "blocks": {} },
+                "accelerated-checkout": { "type": "accelerated-checkout", "static": true, "settings": {}, "blocks": {} }
+              },
+              "block_order": []
+            },
+            "amazon_button": { "type": "amazon-button", "settings": { "label": "Buy on Amazon", "note": "Prefer to order through your Amazon account? This item is also sold on Amazon." }, "blocks": {} },
+            "description_text": { "type": "text", "name": "t:names.product_description", "settings": { "text": "{{ closest.product.description }}", "width": "100%", "alignment": "left", "type_preset": "rte" }, "blocks": {} }
+          },
+          "block_order": ["header_group", "divider_main", "variant_picker", "buy_buttons", "amazon_button", "description_text"]
+        }
+      },
+      "settings": { "content_width": "content-center-aligned", "desktop_media_position": "left", "equal_columns": false, "limit_details_width": false, "gap": 48, "enable_sticky_add_to_cart": true, "background_color": "{{ settings.color_palette.background }}", "padding-block-start": 0, "padding-block-end": 0 }
+    },
+    "plate_specs": {
+      "type": "section",
+      "name": "Jack plate specs",
+      "blocks": {
+        "specs": { "type": "jack-plate-specs", "settings": { "heading": "Dimensions & capacity" } }
+      },
+      "block_order": ["specs"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 24, "padding-block-end": 0 }
+    },
+    "load_spread": {
+      "type": "section",
+      "name": "Load spread explainer",
+      "blocks": {
+        "explainer": { "type": "load-spread", "settings": { "heading": "How a jack plate spreads the load" } }
+      },
+      "block_order": ["explainer"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 24, "padding-block-end": 0 }
+    },
+    "block_specs": {
+      "type": "section",
+      "name": "Cribbing block specs",
+      "blocks": {
+        "specs": { "type": "cribbing-specs", "settings": { "heading": "Dimensions & capacity" } }
+      },
+      "block_order": ["specs"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 0, "padding-block-end": 24 }
+    },
+    "crib_explainer": {
+      "type": "section",
+      "name": "Crib vs stand explainer",
+      "blocks": {
+        "explainer": { "type": "crib-explainer", "settings": { "heading": "Why a crib beats a jack stand on soft ground" } }
+      },
+      "block_order": ["explainer"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 0, "padding-block-end": 0 }
+    },
+    "crib_lift": {
+      "type": "section",
+      "name": "Crib lift platform",
+      "blocks": {
+        "explainer": { "type": "crib-lift", "settings": { "heading": "A lift point where the ground can't give you one" } }
+      },
+      "block_order": ["explainer"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 0, "padding-block-end": 0 }
+    },
+    "crib_rescue": {
+      "type": "section",
+      "name": "Crib rescue lift",
+      "blocks": {
+        "explainer": { "type": "crib-rescue", "settings": { "heading": "Lift an inch, crib an inch" } }
+      },
+      "block_order": ["explainer"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 0, "padding-block-end": 0 }
+    },
+    "osha": {
+      "type": "section",
+      "name": "OSHA notes",
+      "blocks": {
+        "notes": { "type": "osha-notes", "settings": { "heading": "OSHA requirements" } }
+      },
+      "block_order": ["notes"],
+      "settings": { "content_direction": "column", "horizontal_alignment_flex_direction_column": "flex-start", "gap": 0, "section_width": "page-width", "background_media": "none", "padding-block-start": 24, "padding-block-end": 48 }
+    }
+  },
+  "order": ["main", "plate_specs", "load_spread", "block_specs", "crib_explainer", "crib_lift", "crib_rescue", "osha"]
+}
